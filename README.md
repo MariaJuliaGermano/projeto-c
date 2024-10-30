@@ -1,4 +1,4 @@
-# Nome do Jogo
+# Jogo em C 
 
 ## Membros da Equipe
 - Maria Julia Germano - [GitHub](https://github.com/seu_usuario)
