@@ -1,11 +1,14 @@
 CC = gcc
-CFLAGS = -Wall -Iinclude
+CFLAGS = -Iinclude
+LDFLAGS = -Llib -lcli_lib  
+SOURCES = src/main.c src/game.c
+OBJECTS = $(SOURCES:.c=.o)
+EXEC = build/jogo
 
-SRC = src/main.c src/game.c
-OUT = build/jogo
+all: $(EXEC)
 
-all: $(SRC)
-    $(CC) $(CFLAGS) $(SRC) -o $(OUT)
+$(EXEC): $(OBJECTS)
+	$(CC) -o $@ $^ $(LDFLAGS)
 
 clean:
-    rm -f $(OUT)
+	rm -f $(OBJECTS) $(EXEC)

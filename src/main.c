@@ -1,6 +1,9 @@
-#include <stdio.h>
+#include "cli_lib.h"
+#include "game.h"
 
 int main() {
-    printf("Bem-vindo ao jogo!\n");
+    cli_init(); 
+    start_game(); 
+    cli_cleanup(); 
     return 0;
 }
