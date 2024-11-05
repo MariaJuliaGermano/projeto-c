@@ -1,8 +1,8 @@
 # Jogo da Forca
 
 ## Membros da Equipe
-- Maria Julia Germano - [GitHub](https://github.com/seu_usuario)
-- Ricardo Block - [GitHub](https://github.com/seu_usuario)
+- Maria Julia Germano - [GitHub](https://github.com/MariaJuliaGermano)
+- Ricardo Block - [GitHub](https://github.com/RicardoBV)
 
 ## Informações do Projeto
 - **Disciplina**: Programação Imperativa e Funcional - 2024.2
