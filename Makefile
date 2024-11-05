@@ -1,7 +1,7 @@
 CC = gcc
 CFLAGS = -Iinclude
 LDFLAGS = -Llib -lcli_lib  
-SOURCES = src/main.c src/game.c
+SOURCES = src/main.c src/game.c src/keyboard.c src/screen.c src/timer.c
 OBJECTS = $(SOURCES:.c=.o)
 EXEC = build/jogo
 
