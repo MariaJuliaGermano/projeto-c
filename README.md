@@ -1,4 +1,4 @@
-# Jogo da Forca
+# ForC-ode 
 
 ## Membros da Equipe
 - Maria Julia Germano - [GitHub](https://github.com/MariaJuliaGermano)
