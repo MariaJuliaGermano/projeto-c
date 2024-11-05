@@ -13,6 +13,14 @@ Este é um jogo da forca desenvolvido em C utilizando a biblioteca CLI-lib, que 
 
 O objetivo do jogo é adivinhar uma palavra secreta, letra por letra. O jogador tem um número limitado de tentativas para acertar todas as letras antes que suas chances se esgotem. O jogo exibe o progresso a cada rodada, mostrando as letras corretas descobertas, a quantidade de tentativas restantes e a pontuação.
 
+## Mecânica do Jogo
+1. **Objetivo**: Adivinhar a palavra secreta antes de esgotar todas as tentativas.
+2. **Progresso**: A cada tentativa, o jogo exibe o estado atual da palavra, mostrando as letras acertadas e `_` para letras ainda não descobertas.
+3. **Tentativas**: Cada letra errada reduz o número de tentativas restantes.
+4. **Pontuação**: O jogador ganha 10 pontos para cada letra correta e perde 5 pontos para cada tentativa incorreta.
+5. **Condições de Vitória**: O jogador vence se adivinhar todas as letras antes de acabar as tentativas. Se as tentativas se esgotarem, o jogador perde, e a palavra correta é exibida.
+
+
 ## Estrutura de Pastas
 - `src/`: Contém o código-fonte do jogo, em arquivos `.c`.
   - `main.c`: Arquivo principal que inicializa o jogo.
@@ -28,19 +36,6 @@ O objetivo do jogo é adivinhar uma palavra secreta, letra por letra. O jogador 
 - `Makefile`: Arquivo de build.
 - `LICENSE`: Licença do projeto.
 
-## Mecânica do Jogo
-1. **Objetivo**: Adivinhar a palavra secreta antes de esgotar todas as tentativas.
-2. **Progresso**: A cada tentativa, o jogo exibe o estado atual da palavra, mostrando as letras acertadas e `_` para letras ainda não descobertas.
-3. **Tentativas**: Cada letra errada reduz o número de tentativas restantes.
-4. **Pontuação**: O jogador ganha 10 pontos para cada letra correta e perde 5 pontos para cada tentativa incorreta.
-5. **Condições de Vitória**: O jogador vence se adivinhar todas as letras antes de acabar as tentativas. Se as tentativas se esgotarem, o jogador perde, e a palavra correta é exibida.
-
-## Requisitos Técnicos Implementados
-- **Estruturas de Controle**: Uso de `if-else` e `while` para gerenciar o fluxo do jogo.
-- **Funções Modularizadas**: Funções específicas para inicializar o jogo, exibir o estado, verificar letras e gerenciar o loop principal.
-- **Uso de Structs**: A `struct JogoForca` agrupa dados como a palavra secreta, tentativas restantes, letras acertadas e pontuação, facilitando o gerenciamento do estado do jogo.
-- **Ponteiros e Alocação de Memória**: O uso de ponteiros permite a manipulação direta da `struct JogoForca` nas funções.
-- **Compatibilidade com CLI-lib**: Utiliza CLI-lib para capturar entrada de teclado e atualizar o terminal, garantindo compatibilidade com Linux/macOS.
 
 ## Instruções para Compilar e Executar
 1. **Compilar o Jogo**:
@@ -62,6 +57,3 @@ O objetivo do jogo é adivinhar uma palavra secreta, letra por letra. O jogador 
      make clean
      ```
 
-## Requisitos do Sistema
-- Compilador `gcc`.
-- Biblioteca CLI-lib instalada e compatível com o sistema (Linux ou macOS).
