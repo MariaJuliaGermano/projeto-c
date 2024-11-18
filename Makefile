@@ -1,14 +1,13 @@
 CC = gcc
 CFLAGS = -Iinclude
-LDFLAGS = -Llib -lcli_lib  
-SOURCES = src/main.c src/game.c src/keyboard.c src/screen.c src/timer.c
-OBJECTS = $(SOURCES:.c=.o)
-EXEC = build/jogo
+SRCS = src/main.c src/keyboard.c src/screen.c src/timer.c
+OBJS = $(SRCS:.c=.o)
+OUT = build/labirinto
 
-all: $(EXEC)
+all: $(OUT)
 
-$(EXEC): $(OBJECTS)
-	$(CC) -o $@ $^ $(LDFLAGS)
+$(OUT): $(OBJS)
+	$(CC) -o $(OUT) $(OBJS) $(CFLAGS)
 
 clean:
-	rm -f $(OBJECTS) $(EXEC)
+	rm -f $(OBJS) $(OUT)
