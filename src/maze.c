@@ -47,20 +47,21 @@ void move_player(Maze *maze, Player *player, char direction) {
     else if (direction == 'a') new_y--;
     else if (direction == 'd') new_y++;
 
-    // Valida o movimento
+    // Verifica se o movimento é válido (não ultrapassa os limites)
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
-        if (maze->grid[new_x][new_y] == ' ' || maze->grid[new_x][new_y] == 'E') {
-            // Atualiza o labirinto
+        // Se o jogador atingir a saída, o jogo termina
+        if (maze->grid[new_x][new_y] == 'E') {
+            clear_screen();
+            printf("Parabéns! Você venceu!\n");
+            exit(0); // Sai do jogo imediatamente
+        }
+
+        // Atualiza a posição do jogador se for espaço vazio
+        if (maze->grid[new_x][new_y] == ' ') {
             maze->grid[player->x][player->y] = ' '; // Remove o jogador da posição anterior
             player->x = new_x;
             player->y = new_y;
             maze->grid[player->x][player->y] = '@'; // Atualiza a nova posição do jogador
-
-            // Se o jogador atingir a saída
-            if (maze->grid[new_x][new_y] == 'E') {
-                printf("Parabéns! Você venceu!\n");
-                exit(0); // Sai do jogo
-            }
         }
     }
 }
