@@ -5,6 +5,11 @@ void clear_screen() {
     printf("\033[2J\033[H"); // Sequência ANSI para limpar a tela
 }
 
-void print_at(int x, int y, char *text) {
-    printf("\033[%d;%dH%s", x, y, text); // Move o cursor e imprime o texto
+void draw_maze(char maze[10][10], int rows, int cols) {
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            putchar(maze[i][j]);
+        }
+        putchar('\n');
+    }
 }
