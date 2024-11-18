@@ -5,7 +5,7 @@
 
 int main() {
     Maze *maze = create_maze(15, 40); // Cria o labirinto 5x5
-    Player player = {1, 1, 10};     // Posição inicial do jogador e 10 jogadas restantes
+    Player player = {1, 1, 100};     // Posição inicial do jogador e 10 jogadas restantes
     load_maze(maze);                // Carrega o layout inicial do labirinto
 
     while (player.score > 0) {
@@ -26,7 +26,7 @@ int main() {
 
         // Verifica se as jogadas acabaram
         if (player.score <= 0) {
-            printf("Game Over! Você não tem mais jogadas.\n");
+            printf("Game Over! Você não tem mais jogadas, sua pontuação foi 0.\n");
             break;
         }
     }
