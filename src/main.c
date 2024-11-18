@@ -5,7 +5,7 @@
 
 int main() {
     Maze *maze = create_maze(15, 40); // Cria o labirinto 5x5
-    Player player = {1, 1, 100};     // Posição inicial do jogador e 10 jogadas restantes
+    Player player = {1, 1, 1000};     // Posição inicial do jogador e 10 jogadas restantes
     load_maze(maze);                // Carrega o layout inicial do labirinto
 
     while (player.score > 0) {
