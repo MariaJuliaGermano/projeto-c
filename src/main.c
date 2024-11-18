@@ -13,7 +13,7 @@ int main() {
 
         // Exibe o número de jogadas restantes
         printf("Jogadas restantes: %d\n", player.score);
-
+        printf("Jogador: 🧍 | Jogadas restantes: %d\n", player.score);
         // Exibe o labirinto
         draw_maze(maze->grid, maze->rows, maze->cols);
 

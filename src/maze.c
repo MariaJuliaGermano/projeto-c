@@ -22,21 +22,21 @@ void free_maze(Maze *maze) {
 }
 
 void load_maze(Maze *maze) {
-    char example[15][40] = {
+        char example[15][40] = {
         "########################################",
-        "#@       #       #     #              #",
+        "#🧍       🌲     🌌       🌵      🌲     #",
         "### ### ### ##### ### ### ####### ######",
-        "#   #   #   #       #     #           #",
+        "#   🌲   🌲       🌌     🌵          🌲 #",
         "# ##### ##### ####### ##### ######### ##",
-        "#       #       #         #       #    #",
+        "#       #       🌌         🌲       🌌  #",
         "### ### ##### ##### ####### ### ##### ##",
-        "#   # #       #     #     #   #       #",
+        "#   🌵 #       🌌     🌌     🌲   🌌    #",
         "# # ### ####### ### # ##### ### ####### ",
-        "# #             #   #   #       #      #",
+        "# #         #   #   🌲   #       🌌    #",
         "# ##### ### ##### ##### ####### ###### #",
-        "#     #   #         #     #           #",
+        "#     #   🌌         #     🌲         🌵#",
         "##### ### ######### ##### ### #########",
-        "#       #       #       #   #         E#",
+        "#       🌌       #       #   #         🏁#",
         "########################################"
     };
 
@@ -63,8 +63,10 @@ void move_player(Maze *maze, Player *player, char direction) {
         // Se o jogador atingir a saída, o jogo termina
         if (maze->grid[new_x][new_y] == 'E') {
             clear_screen();
-            printf("Parabéns! Você venceu!\n");
-            printf("Sua pontuação final: %d jogadas restantes.\n", player->score);
+            printf("+----------------------------------+\n");
+            printf("|          PARABÉNS!!!            |\n");
+            printf("|  SUA PONTUAÇÃO FINAL: %2d JOGADAS |\n", player->score);
+            printf("+----------------------------------+\n");
             exit(0); // Sai do jogo imediatamente
         }
 
