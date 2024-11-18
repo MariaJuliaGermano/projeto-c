@@ -22,18 +22,12 @@ void free_maze(Maze *maze) {
 }
 
 void load_maze(Maze *maze) {
-    // Exemplo: Carregar um labirinto básico
-    char example[10][10] = {
-        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'},
-        {'#', '@', ' ', ' ', '#', ' ', ' ', ' ', ' ', '#'},
-        {'#', ' ', '#', ' ', '#', ' ', '#', '#', ' ', '#'},
-        {'#', ' ', '#', ' ', ' ', ' ', ' ', '#', ' ', '#'},
-        {'#', ' ', '#', '#', '#', '#', ' ', '#', ' ', '#'},
-        {'#', ' ', ' ', ' ', ' ', '#', ' ', '#', ' ', '#'},
-        {'#', '#', '#', '#', ' ', '#', ' ', '#', ' ', '#'},
-        {'#', ' ', ' ', '#', ' ', ' ', ' ', '#', ' ', '#'},
-        {'#', ' ', '#', '#', '#', '#', ' ', ' ', 'E', '#'},
-        {'#', '#', '#', '#', '#', '#', '#', '#', '#', '#'}
+    char example[5][5] = {
+        {'#', '#', '#', '#', '#'},
+        {'#', '@', ' ', ' ', '#'},
+        {'#', ' ', '#', ' ', '#'},
+        {'#', ' ', ' ', 'E', '#'},
+        {'#', '#', '#', '#', '#'}
     };
 
     for (int i = 0; i < maze->rows; i++) {
@@ -47,19 +41,21 @@ void move_player(Maze *maze, Player *player, char direction) {
     int new_x = player->x;
     int new_y = player->y;
 
+    // Calcula a nova posição com base na entrada do usuário
     if (direction == 'w') new_x--;
     else if (direction == 's') new_x++;
     else if (direction == 'a') new_y--;
     else if (direction == 'd') new_y++;
 
+    // Valida o movimento
     if (maze->grid[new_x][new_y] == ' ' || maze->grid[new_x][new_y] == 'E') {
         maze->grid[player->x][player->y] = ' ';
         player->x = new_x;
         player->y = new_y;
-        maze->grid[new_x][new_y] = '@';
+        maze->grid[player->x][player->y] = '@';
 
         if (maze->grid[new_x][new_y] == 'E') {
-            printf("Você venceu!\n");
+            printf("Parabéns! Você venceu!\n");
             exit(0);
         }
     }
