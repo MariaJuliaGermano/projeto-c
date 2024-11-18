@@ -8,14 +8,19 @@ void clear_screen() {
 void draw_maze(char **maze, int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            if (maze[i][j] == '#') {
-                printf("\033[37m#\033[0m"); // Cinza para paredes
-            } else if (maze[i][j] == '@') {
-                printf("\033[33m@\033[0m"); // Amarelo para o jogador
-            } else if (maze[i][j] == 'E') {
-                printf("\033[32m🏁\033[0m"); // Verde para a saída
+            char cell = maze[i][j];
+            if (cell == '#') {
+                printf("\033[37m🌲\033[0m"); // Parede
+            } else if (cell == '@') {
+                printf("\033[33m🧍\033[0m"); // Jogador
+            } else if (cell == 'E') {
+                printf("\033[32m🏁\033[0m"); // Saída
+            } else if (cell == '*') {
+                printf("\033[31m🌵\033[0m"); // Armadilha
+            } else if (cell == '+') {
+                printf("\033[34m🍎\033[0m"); // Bônus
             } else {
-                putchar(maze[i][j]); // Qualquer outro símbolo
+                putchar(' '); // Espaços vazios
             }
         }
         putchar('\n');
