@@ -4,7 +4,7 @@
 #include <stdio.h>
 
 int main() {
-    Maze *maze = create_maze(5, 5); // Cria o labirinto 5x5
+    Maze *maze = create_maze(15, 40); // Cria o labirinto 5x5
     Player player = {1, 1, 10};     // Posição inicial do jogador e 10 jogadas restantes
     load_maze(maze);                // Carrega o layout inicial do labirinto
 

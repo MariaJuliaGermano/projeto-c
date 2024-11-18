@@ -2,7 +2,7 @@
 #include <stdio.h>
 
 void clear_screen() {
-    printf("\033[2J\033[H"); // Sequência ANSI para limpar a tela
+    printf("\033[2J\033[H"); // Sequência ANSI para limpar a tela e mover o cursor para o topo
 }
 
 void draw_maze(char **maze, int rows, int cols) {
