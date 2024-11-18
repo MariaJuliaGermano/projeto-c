@@ -2,6 +2,11 @@
 #include "player.h"
 #include <stdio.h>
 
+// Implementação da limpeza diretamente no main.c
+void clear_screen() {
+    printf("\033[2J\033[H"); // Sequência ANSI para limpar a tela
+}
+
 int main() {
     Maze *maze = create_maze(15, 20);
     load_maze(maze);
@@ -9,7 +14,7 @@ int main() {
     Player player = {1, 1, 100}; // Posição inicial (1,1) e 100 jogadas
 
     while (player.score > 0) {
-        clear_screen(); // Limpa a tela antes de desenhar o labirinto
+        clear_screen(); // Limpa a tela
         draw_maze(maze);
 
         printf("Jogador: 🧍 | Jogadas restantes: %d\n", player.score);
