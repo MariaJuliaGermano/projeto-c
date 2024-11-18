@@ -1,14 +1,17 @@
 #ifndef TIMER_H
 #define TIMER_H
 
-void timerInit(int valueMilliSec);
+#include <time.h>
 
-void timerDestroy();
+// Estrutura para armazenar o tempo inicial
+typedef struct {
+    time_t start_time; // Tempo inicial
+} Timer;
 
-void timerUpdateTimer(int valueMilliSec);
+// Inicializa o temporizador
+void start_timer(Timer *timer);
 
-int timerTimeOver();
-
-void timerPrint();
+// Retorna o tempo decorrido em segundos
+int get_elapsed_time(Timer *timer);
 
 #endif
