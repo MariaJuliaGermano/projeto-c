@@ -1,7 +1,7 @@
 #ifndef SCREEN_H
 #define SCREEN_H
 
-void clear_screen(); // Limpa a tela do terminal.
-void print_at(int x, int y, char *text); // Imprime texto em uma posição específica.
+void clear_screen(); // Limpa a tela do terminal
+void draw_maze(char **maze, int rows, int cols); // Desenha o labirinto na tela
 
 #endif
