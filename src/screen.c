@@ -10,7 +10,7 @@ void draw_maze(char **maze, int rows, int cols) {
         for (int j = 0; j < cols; j++) {
             char cell = maze[i][j];
             if (cell == '#') {
-                printf("\033[37m🌲\033[0m"); // Parede
+                printf("\033[37m\033[0m"); // Parede
             } else if (cell == '@') {
                 printf("\033[33m🧍\033[0m"); // Jogador
             } else if (cell == 'E') {
