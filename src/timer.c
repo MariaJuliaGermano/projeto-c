@@ -1,11 +1,10 @@
 #include "timer.h"
+#include <time.h>
 
-// Inicializa o temporizador com o tempo atual
 void start_timer(Timer *timer) {
-    timer->start_time = time(NULL);
+    timer->start_time = time(NULL); // Salva o tempo inicial
 }
 
-// Retorna o tempo decorrido em segundos desde o início
 int get_elapsed_time(Timer *timer) {
-    return (int)(time(NULL) - timer->start_time);
+    return (int)(time(NULL) - timer->start_time); // Retorna o tempo decorrido
 }
