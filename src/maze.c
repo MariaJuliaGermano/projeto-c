@@ -1,74 +1,58 @@
 #include "maze.h"
 #include <stdlib.h>
+#include <string.h>
 #include <stdio.h>
 
+// Cria e aloca memória para o labirinto
 Maze *create_maze(int rows, int cols) {
     Maze *maze = malloc(sizeof(Maze));
     maze->rows = rows;
     maze->cols = cols;
-    maze->grid = malloc(rows * sizeof(char *));
+    maze->grid = malloc(rows * sizeof(char **));
     for (int i = 0; i < rows; i++) {
-        maze->grid[i] = malloc(cols * sizeof(char));
+        maze->grid[i] = malloc(cols * sizeof(char *));
     }
     return maze;
 }
 
-void free_maze(Maze *maze) {
-    for (int i = 0; i < maze->rows; i++) {
-        free(maze->grid[i]);
-    }
-    free(maze->grid);
-    free(maze);
-}
-
+// Carrega o layout do labirinto com emojis
 void load_maze(Maze *maze) {
-    char example[15][40] = { // Cada linha contém 20 caracteres ASCII (equivale a 40 visuais com emojis)
-        "####################",
-        "#@            #     *    +*",
-        "### ### ### ###### ##",
-        "#      #      #                #    #",
-        "#  #####  ######  #####  ",
-        "#              #                  #    ",
-        "###  #####  ######  ###  ",
-        "#      #            #          #    #",
-        "#  #####  ######  ###  ##",
-        "#                  #      #          #",
-        "#  ######  #####  #####  ",
-        "#          #                +        #",
-        "###      ######  #######  ",
-        "#              #                  E  #",
-        "####################"
+    char *example[15][20] = {
+        {"🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲",
+         "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲"},
+        {"🌲", "🧍", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲",
+         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
+        {"🌲", "🌲", "🌲", "  ", "🌲", "🌲", "🌲", "  ", "🌲", "🌲",
+         "🌲", "🌲", "  ", "  ", "  ", "🌲", "🌲", "  ", "  ", "🌲"},
+        {"🌲", "  ", "  ", "  ", "🌲", "  ", "  ", "  ", "  ", "  ",
+         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
+        {"🌲", "  ", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "  ", "🌲",
+         "  ", "  ", "  ", "  ", "  ", "🌲", "🌲", "  ", "  ", "🌲"},
+        {"🌲", "  ", "🌲", "  ", "  ", "  ", "  ", "  ", "  ", "🌲",
+         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
+        {"🌲", "  ", "🌲", "🌲", "🌲", "🌲", "  ", "  ", "  ", "🌲",
+         "🌲", "  ", "🌲", "🌲", "🌲", "🌲", "  ", "  ", "  ", "🌲"},
+        {"🌲", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",
+         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
+        {"🌲", "🌲", "🌲", "  ", "  ", "  ", "  ", "  ", "  ", "  ",
+         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
+        {"🌲", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",
+         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🏁"}
     };
 
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
-            maze->grid[i][j] = example[i][j];
+            maze->grid[i][j] = strdup(example[i][j]); // Copia cada emoji para a matriz
         }
     }
 }
 
-
-
-void move_player(Maze *maze, Player *player, char direction) {
-    int new_x = player->x;
-    int new_y = player->y;
-
-    // Calcula a nova posição com base na entrada do usuário
-    if (direction == 'w') new_x--;
-    else if (direction == 's') new_x++;
-    else if (direction == 'a') new_y--;
-    else if (direction == 'd') new_y++;
-
-    // Verifica se o movimento é válido
-    if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
-        char next_cell = maze->grid[new_x][new_y];
-
-        // Só permite movimento em espaços vazios ou itens
-        if (next_cell == ' ' || next_cell == '*' || next_cell == '+' || next_cell == 'E') {
-            maze->grid[player->x][player->y] = ' '; // Remove o jogador da posição anterior
-            player->x = new_x;
-            player->y = new_y;
-            maze->grid[player->x][player->y] = '@'; // Atualiza a nova posição do jogador
+// Exibe o labirinto no terminal
+void draw_maze(Maze *maze) {
+    for (int i = 0; i < maze->rows; i++) {
+        for (int j = 0; j < maze->cols; j++) {
+            printf("%s", maze->grid[i][j]); // Exibe os emojis diretamente
         }
+        putchar('\n'); // Quebra de linha
     }
 }

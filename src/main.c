@@ -1,48 +1,28 @@
-#include "keyboard.h"
-#include "screen.h"
 #include "maze.h"
+#include "player.h"
 #include <stdio.h>
 
 int main() {
-    Maze *maze = create_maze(15, 40); // Cria o labirinto 5x5
-    Player player = {1, 1, 1000};     // Posição inicial do jogador e 10 jogadas restantes
-    load_maze(maze);                // Carrega o layout inicial do labirinto
+    Maze *maze = create_maze(15, 20);
+    load_maze(maze);
+
+    Player player = {1, 1, 100}; // Posição inicial (1,1) e 100 jogadas
 
     while (player.score > 0) {
-        clear_screen(); // Limpa a tela antes de redesenhar
+        clear_screen(); // Limpa a tela antes de desenhar o labirinto
+        draw_maze(maze);
 
-        // Exibe estatísticas do jogador
         printf("Jogador: 🧍 | Jogadas restantes: %d\n", player.score);
-        printf("Pressione Enter para encerrar o jogo.\n");
+        printf("Use W, A, S, D para mover: ");
+        char command = getchar();
+        getchar(); // Captura o Enter
 
-        // Exibe o labirinto
-        draw_maze(maze->grid, maze->rows, maze->cols);
+        move_player(maze, &player, command);
 
-        // Captura a entrada do jogador
-        char key = get_key();
-
-        // Verifica se o jogador pressionou Enter
-        if (key == '\n') {
-            clear_screen();
-            printf("Você pressionou Enter. O jogo foi encerrado.\n");
-            break; // Sai do loop principal
-        }
-
-        // Processa o movimento do jogador
-        move_player(maze, &player, key);
-
-        // Atualiza as jogadas restantes
-        player.score--;
-
-        // Verifica se as jogadas acabaram
         if (player.score <= 0) {
-            printf("Game Over! Você não tem mais jogadas.\n");
-            break;
+            printf("Game Over! Você ficou sem jogadas.\n");
         }
     }
-        
-    // Libera os recursos do labirinto
-    free_maze(maze);
 
     return 0;
 }

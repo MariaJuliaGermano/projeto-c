@@ -1,17 +1,27 @@
+# Variáveis
 CC = gcc
-CFLAGS = -Iinclude -Wall -Wextra -pedantic
-SRCS = src/main.c src/keyboard.c src/screen.c src/timer.c src/maze.c
-OBJS = $(SRCS:.c=.o)
-OUT = build/labirinto
+CFLAGS = -Wall -Wextra -g
+OBJDIR = build
+SRCDIR = src
+INCDIR = include
 
-all: $(OUT)
+# Arquivos do projeto
+SOURCES = $(SRCDIR)/main.c $(SRCDIR)/maze.c $(SRCDIR)/player.c
+OBJECTS = $(OBJDIR)/main.o $(OBJDIR)/maze.o $(OBJDIR)/player.o
+EXEC = $(OBJDIR)/labirinto
 
-$(OUT): $(OBJS)
-	$(CC) -o $(OUT) $(OBJS) $(CFLAGS)
+# Alvo padrão
+all: $(EXEC)
 
-%.o: %.c
-	$(CC) -c $< -o $@ $(CFLAGS)
+# Linkagem final
+$(EXEC): $(OBJECTS)
+	$(CC) $(CFLAGS) -o $@ $^
 
+# Compilação dos arquivos .c para .o
+$(OBJDIR)/%.o: $(SRCDIR)/%.c
+	mkdir -p $(OBJDIR)
+	$(CC) $(CFLAGS) -I$(INCDIR) -c $< -o $@
+
+# Limpeza dos arquivos gerados
 clean:
-	rm -f $(OBJS) $(OUT)
-	rm -rf build
+	rm -rf $(OBJDIR)
