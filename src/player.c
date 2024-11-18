@@ -1,9 +1,9 @@
 #include "player.h"
-#include <stdio.h>   // Para printf
-#include <string.h>  // Para strcmp
-#include <stdlib.h>  // Para exit()
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
 
-// Implementação da movimentação do jogador
+// Movimenta o jogador no labirinto
 void move_player(Maze *maze, Player *player, char direction) {
     int new_x = player->x;
     int new_y = player->y;
@@ -17,19 +17,19 @@ void move_player(Maze *maze, Player *player, char direction) {
     // Verifica se a nova posição está dentro dos limites
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
         // Se não for uma parede
-        if (strcmp(maze->grid[new_x][new_y], "🌲") != 0) {
-            maze->grid[player->x][player->y] = "  ";  // Limpa a posição anterior
+        if (maze->grid[new_x][new_y] != '#') {
+            maze->grid[player->x][player->y] = ' '; // Deixa o espaço anterior vazio
             player->x = new_x;
             player->y = new_y;
-            maze->grid[player->x][player->y] = "🧍";  // Atualiza a posição do jogador
+            maze->grid[player->x][player->y] = '@'; // Atualiza a posição do jogador
 
-            player->score--; // Reduz o número de jogadas
+            player->score--; // Reduz as jogadas restantes
 
             // Verifica se chegou à saída
-            if (strcmp(maze->grid[player->x][player->y], "🏁") == 0) {
+            if (maze->grid[player->x][player->y] == 'E') {
                 printf("Parabéns! Você venceu o jogo!\n");
                 printf("Pontuação final: %d\n", player->score);
-                exit(0); // Finaliza o programa
+                exit(0);
             }
         }
     }

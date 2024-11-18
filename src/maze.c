@@ -6,43 +6,53 @@
 // Cria e aloca memória para o labirinto
 Maze *create_maze(int rows, int cols) {
     Maze *maze = malloc(sizeof(Maze));
+    if (!maze) {
+        printf("Erro: Falha ao alocar memória para o labirinto.\n");
+        exit(1);
+    }
+
     maze->rows = rows;
     maze->cols = cols;
-    maze->grid = malloc(rows * sizeof(char **));
+
+    maze->grid = malloc(rows * sizeof(char *));
+    if (!maze->grid) {
+        printf("Erro: Falha ao alocar memória para as linhas do labirinto.\n");
+        exit(1);
+    }
+
     for (int i = 0; i < rows; i++) {
-        maze->grid[i] = malloc(cols * sizeof(char *));
+        maze->grid[i] = malloc(cols * sizeof(char));
+        if (!maze->grid[i]) {
+            printf("Erro: Falha ao alocar memória para as colunas do labirinto.\n");
+            exit(1);
+        }
     }
     return maze;
 }
 
-// Carrega o layout do labirinto com emojis
+// Carrega o layout do labirinto com caracteres ASCII
 void load_maze(Maze *maze) {
-    char *example[15][20] = {
-        {"🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲",
-         "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲"},
-        {"🌲", "🧍", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲",
-         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
-        {"🌲", "🌲", "🌲", "  ", "🌲", "🌲", "🌲", "  ", "🌲", "🌲",
-         "🌲", "🌲", "  ", "  ", "  ", "🌲", "🌲", "  ", "  ", "🌲"},
-        {"🌲", "  ", "  ", "  ", "🌲", "  ", "  ", "  ", "  ", "  ",
-         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
-        {"🌲", "  ", "🌲", "🌲", "🌲", "🌲", "🌲", "🌲", "  ", "🌲",
-         "  ", "  ", "  ", "  ", "  ", "🌲", "🌲", "  ", "  ", "🌲"},
-        {"🌲", "  ", "🌲", "  ", "  ", "  ", "  ", "  ", "  ", "🌲",
-         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
-        {"🌲", "  ", "🌲", "🌲", "🌲", "🌲", "  ", "  ", "  ", "🌲",
-         "🌲", "  ", "🌲", "🌲", "🌲", "🌲", "  ", "  ", "  ", "🌲"},
-        {"🌲", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",
-         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
-        {"🌲", "🌲", "🌲", "  ", "  ", "  ", "  ", "  ", "  ", "  ",
-         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🌲"},
-        {"🌲", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ",
-         "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "  ", "🏁"}
+    char example[15][20] = {
+        "####################",
+        "#@       #     *   +",
+        "###  #  ###  #### ##",
+        "#   #   #         # ",
+        "#   #######  ###### ",
+        "#        #         #",
+        "###  #########  ### ",
+        "#   #      #       #",
+        "#   ####   ##### ###",
+        "#       #   #       ",
+        "#####   ###   ######",
+        "#                  #",
+        "###  #########  ####",
+        "#       #         E#",
+        "####################"
     };
 
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
-            maze->grid[i][j] = strdup(example[i][j]); // Copia cada emoji para a matriz
+            maze->grid[i][j] = example[i][j];
         }
     }
 }
@@ -51,8 +61,8 @@ void load_maze(Maze *maze) {
 void draw_maze(Maze *maze) {
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
-            printf("%s", maze->grid[i][j]); // Exibe os emojis diretamente
+            putchar(maze->grid[i][j]); // Exibe diretamente o caractere
         }
-        putchar('\n'); // Quebra de linha
+        putchar('\n'); // Nova linha após cada linha do labirinto
     }
 }
