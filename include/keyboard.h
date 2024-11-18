@@ -1,13 +1,6 @@
+#ifndef KEYBOARD_H
+#define KEYBOARD_H
 
-#ifndef __KEYBOARD_H__
-#define __KEYBOARD_H__
+char get_key(); // Captura teclas do usuário.
 
-void keyboardInit();
-
-void keyboardDestroy();
-    
-int keyhit();
-
-int readch();
-
-#endif 
+#endif
