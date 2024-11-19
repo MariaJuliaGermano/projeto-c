@@ -8,13 +8,13 @@ int main() {
     keyboardInit();      // Inicializa o teclado
 
     Maze *maze = create_maze(13, 38); // Ajuste do tamanho
-    Player player = {1, 1, 100};      // Inicializa o jogador
+    Player player = {2, 2, 100};      // Inicializa o jogador
     load_maze(maze);                  // Carrega o layout do labirinto
 
     // Desenha o labirinto
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
-            screenGotoxy(j + 1, i + 3); // Ajusta para caber dentro das bordas
+            screenGotoxy(j + 2, i + 3); // Ajusta para caber dentro das bordas
             putchar(maze->grid[i][j]);
         }
     }

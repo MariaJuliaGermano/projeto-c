@@ -35,7 +35,7 @@ void load_maze(Maze *maze) {
         "# # ### ####### ### # ##### ### #####",
         "# #         #   #   #   #       #   #",
         "# ##### ### ##### ##### ####### #### #",
-        "#     #   #         #     #         #",
+        "#     #   #         #     #         E#",
         "######################################"
     };
 
@@ -51,25 +51,25 @@ void move_player(Maze *maze, Player *player, char direction) {
     int new_y = player->y;
 
     // Calcula a nova posição com base na entrada do usuário
-    if (direction == 'w') new_x--; // Move para cima
+    if (direction == 'w') new_x--;      // Move para cima
     else if (direction == 's') new_x++; // Move para baixo
     else if (direction == 'a') new_y--; // Move para a esquerda
     else if (direction == 'd') new_y++; // Move para a direita
 
-    // Verifica se o movimento é válido (não ultrapassa os limites e não bate na parede)
+    // Verifica se o movimento é válido
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
-        if (maze->grid[new_x][new_y] == 'E') {
+        char target = maze->grid[new_x][new_y];
+
+        if (target == 'E') { // Objetivo alcançado
             screenClear();
-            screenGotoxy(10, 5); // Centraliza a mensagem
+            screenGotoxy(10, 5);
             printf("+----------------------------------+\n");
             printf("|          PARABÉNS!!!             |\n");
             printf("|  SUA PONTUAÇÃO FINAL: %2d JOGADAS |\n", player->score);
             printf("+----------------------------------+\n");
             screenShowCursor();
             exit(0);
-        }
-
-        if (maze->grid[new_x][new_y] == ' ') {
+        } else if (target == ' ') { // Espaço livre
             // Apaga a posição antiga do jogador
             screenGotoxy(player->y + 1, player->x + 2);
             putchar(' ');
@@ -81,6 +81,10 @@ void move_player(Maze *maze, Player *player, char direction) {
             // Desenha o jogador na nova posição
             screenGotoxy(player->y + 1, player->x + 2);
             putchar('@');
+        } else {
+            // Movimentos inválidos não alteram o estado
+            screenGotoxy(SCRENDX - 20, SCRENDY);
+            printf("Movimento bloqueado!");
         }
     }
 }
