@@ -1,17 +1,39 @@
-#ifndef TIMER_H
-#define TIMER_H
+/**
+ * timer.h
+ * Created on Aug, 23th 2023
+ * Author: Tiago Barros
+ * Based on "From C to C++ course - 2002"
+ */
 
-#include <time.h>
+#ifndef __TIMER_H__
+#define __TIMER_H__
 
-// Estrutura para armazenar o tempo inicial
-typedef struct {
-    time_t start_time; // Tempo inicial
-} Timer;
+/**
+ * Inicializa o temporizador com um intervalo em milissegundos.
+ * @param valueMilliSec O valor do intervalo em milissegundos.
+ */
+void timerInit(int valueMilliSec);
 
-// Inicializa o temporizador
-void start_timer(Timer *timer);
+/**
+ * Destrói o temporizador, liberando recursos associados.
+ */
+void timerDestroy();
 
-// Retorna o tempo decorrido em segundos
-int get_elapsed_time(Timer *timer);
+/**
+ * Atualiza o intervalo do temporizador.
+ *  O novo valor do intervalo em milissegundos.
+ */
+void timerUpdateTimer(int valueMilliSec);
 
-#endif
+/**
+ * Verifica se o tempo especificado pelo intervalo foi excedido.
+ *  1 se o tempo foi excedido, 0 caso contrário.
+ */
+int timerTimeOver();
+
+/**
+ * Exibe o tempo decorrido desde a última atualização do temporizador.
+ */
+void timerPrint();
+
+#endif /* __TIMER_H__ */

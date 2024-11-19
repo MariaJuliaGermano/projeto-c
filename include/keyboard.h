@@ -1,13 +1,34 @@
-#ifndef KEYBOARD_H
-#define KEYBOARD_H
+/**
+ * keyboard.h
+ * Created on Aug, 23th 2023
+ * Author: Tiago Barros
+ * Based on "From C to C++ course - 2002"
+*/
 
-// Funções atuais
-char get_key(); // Captura teclas do usuário
+#ifndef __KEYBOARD_H__
+#define __KEYBOARD_H__
 
-// Funções da CLI-lib
-void keyboardInit();       // Inicializa o teclado
-void keyboardDestroy();    // Restaura as configurações do teclado
-int keyhit();              // Verifica se há uma tecla pressionada
-int readch();              // Lê a tecla pressionada
+/**
+ * Inicializa o teclado.
+ * Configura o terminal para capturar entradas de teclado sem buffer.
+ */
+void keyboardInit();
 
-#endif
+/**
+ * Restaura as configurações originais do teclado.
+ */
+void keyboardDestroy();
+
+/**
+ * Verifica se há uma tecla pressionada.
+ *  1 se há uma tecla pronta para ser lida, 0 caso contrário.
+ */
+int keyhit();
+
+/**
+ * Lê o caractere da tecla pressionada.
+ *  o código ASCII da tecla pressionada.
+ */
+int readch();
+
+#endif /* __KEYBOARD_H__ */

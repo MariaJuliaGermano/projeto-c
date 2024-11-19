@@ -49,8 +49,3 @@ int readch() {
     read(0, &ch, 1);
     return ch;
 }
-
-// Sua função existente para capturar entrada do jogador
-char get_key() {
-    return readch(); // Utiliza CLI-lib para capturar a tecla pressionada
-}
