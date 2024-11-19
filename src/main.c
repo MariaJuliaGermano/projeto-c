@@ -22,7 +22,7 @@ int main() {
     while (player.score > 0) {
         // Exibe informações no topo da tela
         screenGotoxy(2, 0); // Mais deslocado
-        printf("Jogador: @ | Jogadas restantes: %d\n Pressione Enter para sair", player.score);
+        printf("Jogador: @ | Jogadas restantes: %d\n  (W, S, A, D) Para se mover (Enter para sair)", player.score);
 
         // Captura a entrada do jogador
         char key = readch();
@@ -45,8 +45,8 @@ int main() {
 
     // Libera os recursos e restaura o terminal
     free_maze(maze);
-    screenShowCursor();
     keyboardDestroy();
+    screenShowCursor();
     screenDestroy();
     return 0;
 }
