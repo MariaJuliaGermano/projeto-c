@@ -1,15 +1,24 @@
 #include "screen.h"
-#include <stdio.h>
 
 void clear_screen() {
-    printf("\033[2J\033[H"); // Sequência ANSI para limpar a tela e mover o cursor para o topo
+    screenInit(1); // Usa CLI-lib para limpar e configurar a tela
 }
 
 void draw_maze(char **maze, int rows, int cols) {
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            putchar(maze[i][j]); // Exibe cada caractere do labirinto
+            if (maze[i][j] == '@') {
+                screenSetColor(2, 0); // Jogador em verde
+            } else if (maze[i][j] == 'E') {
+                screenSetColor(1, 0); // Saída em vermelho
+            } else if (maze[i][j] == '#') {
+                screenSetColor(0, 7); // Paredes em preto com fundo cinza
+            } else {
+                screenSetColor(7, 0); // Caminho padrão em branco
+            }
+            putchar(maze[i][j]);
         }
-        putchar('\n'); // Quebra de linha após cada linha do labirinto
+        putchar('\n');
     }
+    screenSetColor(7, 0); // Reseta para branco padrão
 }

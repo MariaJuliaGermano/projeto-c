@@ -7,7 +7,7 @@ OUT = build/labirinto
 all: $(OUT)
 
 $(OUT): $(OBJS)
-	$(CC) -o $(OUT) $(OBJS) $(CFLAGS)
+	$(CC) -o $@ $(OBJS) $(CFLAGS)
 
 %.o: %.c
 	$(CC) -c $< -o $@ $(CFLAGS)
