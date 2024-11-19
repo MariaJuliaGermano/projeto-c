@@ -8,7 +8,7 @@ int main() {
     keyboardInit();      // Inicializa o teclado
 
     Maze *maze = create_maze(13, 38); // Ajuste do tamanho
-    Player player = {2, 2, 100};      // Inicializa o jogador
+    Player player = {1, 1, 100};      // Inicializa o jogador
     load_maze(maze);                  // Carrega o layout do labirinto
 
     // Desenha o labirinto
