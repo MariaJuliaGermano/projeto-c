@@ -20,14 +20,15 @@ int main() {
     }
 
     // Coloca o jogador na posição inicial
-    screenGotoxy(player.y, player.x);
+    screenGotoxy(player.y, player.x + 2);
     putchar('@');
 
     while (player.score > 0) {
-        // Move o cursor para exibir informações do jogador fora do labirinto
-        screenGotoxy(0, maze->rows + 1);
+        // Exibe informações no topo da tela
+        screenGotoxy(0, 0); // Move para o canto superior esquerdo
         printf("Jogador: @ | Jogadas restantes: %d\n", player.score);
         printf("Use W, A, S, D para mover. Pressione Enter para sair.\n");
+        printf("\n"); // Linha em branco para separar do labirinto
 
         // Captura a entrada do jogador
         char key = readch();
@@ -49,6 +50,7 @@ int main() {
     }
 
     free_maze(maze);
+    screenShowCursor();
     keyboardDestroy();
     screenDestroy();
     return 0;
