@@ -31,11 +31,11 @@ void load_maze(Maze *maze) {
         "| ##### ##### ####### ##### ########|",
         "|       |       |         |      |  |",
         "|## ### ##### ##### ####### ### ####|",
-        "|   | |       |     |     |   |     |",
+        "|   | |       |     |     |   |   + |",
         "| | ### ####### |## | ##### ### ####|",
-        "| |         |   |   |   |       |   |",
+        "| |         |   |+  |   |       |   |",
         "| ##### ### ##### ##### ####### ####|",
-        "|     |   |         |     |        i|",
+        "|  +  |   |         |     |        i|",
         "====================================="
     };
 
@@ -63,7 +63,7 @@ void move_player(Maze *maze, Player *player, char direction) {
 
         if (target == ' ') { // Espaço vazio, movimento permitido
             // Apaga a posição antiga do jogador
-            screenGotoxy(player->y + 2, player->x + 3); // +1 para alinhar ao terminal
+            screenGotoxy(player->y + 2, player->x + 3);
             putchar(' ');
 
             // Atualiza a posição do jogador
@@ -72,8 +72,23 @@ void move_player(Maze *maze, Player *player, char direction) {
 
             // Desenha o jogador na nova posição
             screenGotoxy(player->y + 2, player->x + 3);
-            putchar('S');
-        } else if (target == 'i') { // Objetivo alcançado
+            putchar('@');
+        } else if (target == '+') { // Bônus encontrado
+            // Apaga o bônus do labirinto
+            screenGotoxy(new_y + 2, new_x + 3);
+            putchar(' ');
+
+            // Atualiza a pontuação
+            player->score += 50;
+
+            // Atualiza a posição do jogador
+            player->x = new_x;
+            player->y = new_y;
+
+            // Desenha o jogador na nova posição
+            screenGotoxy(player->y + 2, player->x + 3);
+            putchar('@');
+        } else if (target == 'E') { // Objetivo alcançado
             screenClear();
             printf("+----------------------------------------+\n");
             printf("|    PARABÉNS!!!  Sua pontuação foi: %d  |\n", player->score);

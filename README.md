@@ -1,5 +1,5 @@
 
-# **Labirinto C**
+# **A Jornada do "S" em Busca do "I"**
 
 ## **Membros da Equipe**
 - Maria Julia Germano - [GitHub](https://github.com/MariaJuliaGermano)
@@ -13,7 +13,7 @@
 
 ## **Descrição do Jogo**
 
-Este é um jogo de labirinto desenvolvido em C. O jogador deve movimentar o personagem pelo labirinto utilizando o teclado, evitando paredes e obstáculos até alcançar a saída. O jogo é baseado em interação via terminal e aplica conceitos de programação modular e estrutura de dados.
+Bem-vindo(a) ao Labirinto SI! Aqui, você embarcará em uma jornada épica, onde o destemido "S", representando o aspirante a profissional de Sistemas de Informação, deve superar desafios e barreiras para alcançar o cobiçado "I", o símbolo do conhecimento, inovação e... a tão sonhada formatura!
 
 ---
 
