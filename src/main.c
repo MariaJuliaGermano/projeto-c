@@ -1,41 +1,51 @@
 #include "keyboard.h"
 #include "screen.h"
 #include "maze.h"
-#include "timer.h"
 #include <stdio.h>
 
 int main() {
     screenInit(1);
     keyboardInit();
-    timerInit(1000);
 
     Maze *maze = create_maze(15, 40);
     Player player = {1, 1, 100};
     load_maze(maze);
 
-    while (player.score > 0) {
-        screenClear();
-        printf("Jogador: @ | Jogadas restantes: %d\n", player.score);
-
-        for (int i = 0; i < maze->rows; i++) {
-            for (int j = 0; j < maze->cols; j++) {
-                putchar(maze->grid[i][j]);
-            }
-            putchar('\n');
+    // Desenha o labirinto inteiro apenas uma vez
+    for (int i = 0; i < maze->rows; i++) {
+        for (int j = 0; j < maze->cols; j++) {
+            screenGotoxy(j, i);
+            putchar(maze->grid[i][j]);
         }
+    }
 
-        if (timerTimeOver()) {
-            char key = readch();
-            if (key == '\n') break;
-            move_player(maze, &player, key);
-            player.score--;
+    // Coloca o jogador na posição inicial
+    screenGotoxy(player.y, player.x);
+    putchar('@');
+
+    while (player.score > 0) {
+        printf("Jogador: @ | Jogadas restantes: %d\n", player.score);
+        printf("Use W, A, S, D para mover. Pressione Enter para sair.\n");
+
+        char key = readch();
+
+        // Verifica se o jogador pressionou Enter
+        if (key == '\n') break;
+
+        // Processa o movimento do jogador
+        move_player(maze, &player, key);
+
+        player.score--;
+
+        if (player.score <= 0) {
+            screenClear();
+            printf("Game Over! Você ficou sem jogadas.\n");
+            break;
         }
     }
 
     free_maze(maze);
     keyboardDestroy();
     screenDestroy();
-    timerDestroy();
-
     return 0;
 }
