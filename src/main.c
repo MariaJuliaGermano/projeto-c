@@ -24,9 +24,12 @@ int main() {
     putchar('@');
 
     while (player.score > 0) {
+        // Move o cursor para exibir informações do jogador fora do labirinto
+        screenGotoxy(0, maze->rows + 1);
         printf("Jogador: @ | Jogadas restantes: %d\n", player.score);
         printf("Use W, A, S, D para mover. Pressione Enter para sair.\n");
 
+        // Captura a entrada do jogador
         char key = readch();
 
         // Verifica se o jogador pressionou Enter
@@ -37,6 +40,7 @@ int main() {
 
         player.score--;
 
+        // Verifica se o jogador perdeu
         if (player.score <= 0) {
             screenClear();
             printf("Game Over! Você ficou sem jogadas.\n");
