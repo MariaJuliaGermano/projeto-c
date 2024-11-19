@@ -24,27 +24,26 @@ int main() {
     putchar('@');
 
     while (player.score > 0) {
-        // Exibe informações no topo da tela
-        screenGotoxy(0, 0); // Move para o canto superior esquerdo
+        // Exibe informações no topo da tela, fora da borda
+        screenGotoxy(1, 0); // Linha 0 para o cabeçalho
         printf("Jogador: @ | Jogadas restantes: %d\n", player.score);
+        screenGotoxy(1, 1); // Linha 1 para instruções
         printf("Use W, A, S, D para mover. Pressione Enter para sair.\n");
-        printf("\n");
 
         // Captura a entrada do jogador
         char key = readch();
 
-        // Verifica se o jogador pressionou Enter
         if (key == '\n') break;
 
-        // Processa o movimento do jogador
         move_player(maze, &player, key);
 
         player.score--;
 
-        // Verifica se o jogador perdeu
         if (player.score <= 0) {
             screenClear();
-            printf("Game Over! Você ficou sem jogadas.\n");
+            printf("+-----------------------------------+\n");
+            printf("| GAME OVER, Você ficou sem jogadas |\n");
+            printf("+-----------------------------------+\n");
             break;
         }
     }
