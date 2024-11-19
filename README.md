@@ -1,5 +1,5 @@
 
-# **Labirinto C**
+# **A Saga do "S" em busca do "I"**
 
 ## **Membros da Equipe**
 - Maria Julia Germano - [GitHub](https://github.com/MariaJuliaGermano)
