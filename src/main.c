@@ -32,7 +32,7 @@ int main() {
         // Move o jogador com base na entrada
         move_player(maze, &player, key);
 
-        player.score--;
+        player.score -= 1;
 
         if (player.score <= 0) {
             screenClear();

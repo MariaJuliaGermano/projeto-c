@@ -75,9 +75,9 @@ void move_player(Maze *maze, Player *player, char direction) {
             putchar('@');
         } else if (target == 'E') { // Objetivo alcançado
             screenClear();
-            printf("+----------------------------------+\n");
-            printf("|          PARABÉNS!!!             |\n");
-            printf("+----------------------------------+\n");
+            printf("+----------------------------------------+\n");
+            printf("|    PARABÉNS!!!  Sua pontuação foi: %d  |\n", player->score);
+            printf("+----------------------------------------+\n");
             exit(0);
         }
     }
