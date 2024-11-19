@@ -63,7 +63,10 @@ void move_player(Maze *maze, Player *player, char direction) {
         // Se o jogador atingir a saída, o jogo termina
         if (maze->grid[new_x][new_y] == 'E') {
             clear_screen();
-            printf("Parabéns! Você venceu!\n");
+            printf("+----------------------------------+\n");
+            printf("|          PARABÉNS!!!            |\n");
+            printf("|  SUA PONTUAÇÃO FINAL: %2d JOGADAS |\n", player->score);
+            printf("+----------------------------------+\n");
             exit(0); // Sai do jogo imediatamente
         }
 

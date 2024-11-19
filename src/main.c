@@ -12,13 +12,22 @@ int main() {
         clear_screen(); // Limpa a tela antes de redesenhar
 
         // Exibe o número de jogadas restantes
-        printf("Jogadas restantes: %d\n", player.score);
+        printf("Jogador: 🧍 | Jogadas restantes: %d\n", player.score);
 
         // Exibe o labirinto
         draw_maze(maze->grid, maze->rows, maze->cols);
 
         // Captura a entrada do jogador
         char key = get_key();
+
+        // Verifica se o jogador pressionou Enter
+        if (key == '\n') {
+            clear_screen();
+            printf("Você pressionou Enter. O jogo foi encerrado.\n");
+            break; // Sai do loop principal
+        }
+        
+        // Processa o movimento do jogador
         move_player(maze, &player, key);
 
         // Atualiza as jogadas restantes
