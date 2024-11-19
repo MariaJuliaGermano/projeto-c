@@ -13,6 +13,7 @@ int main() {
 
         // Exibe o número de jogadas restantes
         printf("Jogador: 🧍 | Jogadas restantes: %d\n", player.score);
+        printf("Pressione Enter para sair do jogo");
 
         // Exibe o labirinto
         draw_maze(maze->grid, maze->rows, maze->cols);
@@ -26,7 +27,7 @@ int main() {
             printf("Você pressionou Enter. O jogo foi encerrado.\n");
             break; // Sai do loop principal
         }
-        
+
         // Processa o movimento do jogador
         move_player(maze, &player, key);
 
