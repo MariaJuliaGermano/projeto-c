@@ -2,7 +2,6 @@
 #include <termios.h>
 #include <unistd.h>
 
-// CLI-lib
 static struct termios initialSettings, newSettings;
 static int peekCharacter;
 

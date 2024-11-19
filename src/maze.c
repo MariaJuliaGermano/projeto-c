@@ -51,29 +51,24 @@ void move_player(Maze *maze, Player *player, char direction) {
     int new_x = player->x;
     int new_y = player->y;
 
-    // Calcula a nova posição com base na entrada do usuário
-    if (direction == 'w') new_x--;      // Move para cima
-    else if (direction == 's') new_x++; // Move para baixo
-    else if (direction == 'a') new_y--; // Move para a esquerda
-    else if (direction == 'd') new_y++; // Move para a direita
+    if (direction == 'w') new_x--;      
+    else if (direction == 's') new_x++;
+    else if (direction == 'a') new_y--; 
+    else if (direction == 'd') new_y++; 
 
-    // Valida se a nova posição está dentro do labirinto
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
         char target = maze->grid[new_x][new_y];
 
-        if (target == ' ') { // Espaço vazio, movimento permitido
-            // Apaga a posição antiga do jogador
-            screenGotoxy(player->y + 2, player->x + 3); // +1 para alinhar ao terminal
+        if (target == ' ') { 
+            screenGotoxy(player->y + 2, player->x + 3); 
             putchar(' ');
 
-            // Atualiza a posição do jogador
             player->x = new_x;
             player->y = new_y;
 
-            // Desenha o jogador na nova posição
             screenGotoxy(player->y + 2, player->x + 3);
             putchar('S');
-        } else if (target == 'i') { // Objetivo alcançado
+        } else if (target == 'i') {
             screenClear();
             printf("+----------------------------------------+\n");
             printf("|   PARABÉNS!!!  Sua pontuação foi: %d   |\n", player->score);

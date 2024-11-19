@@ -27,7 +27,7 @@ void timerUpdateTimer(int valueMilliSec);
 
 /**
  * Verifica se o tempo especificado pelo intervalo foi excedido.
- *  1 se o tempo foi excedido, 0 caso contrário.
+ * @return 1 se o tempo foi excedido, 0 caso contrário.
  */
 int timerTimeOver();
 

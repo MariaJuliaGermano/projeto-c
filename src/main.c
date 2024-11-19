@@ -4,32 +4,27 @@
 #include <stdio.h>
 
 int main() {
-    screenInit(1);       // Inicializa a tela com bordas
-    keyboardInit();      // Inicializa o teclado
+    screenInit(1);       
+    keyboardInit();     
+    Maze *maze = create_maze(13, 38); 
+    Player player = {1, 1, 99};     
+    load_maze(maze);                  
 
-    Maze *maze = create_maze(13, 38); // Ajuste do tamanho
-    Player player = {1, 1, 99};      // Inicializa o jogador
-    load_maze(maze);                  // Carrega o layout do labirinto
-
-    // Desenha o labirinto
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
-            screenGotoxy(j + 2, i + 3); // Ajusta para caber dentro das bordas
+            screenGotoxy(j + 2, i + 3); 
             putchar(maze->grid[i][j]);
         }
     }
 
     while (player.score > 0) {
-        // Exibe informações no topo da tela
-        screenGotoxy(2, 0); // Mais deslocado
+        screenGotoxy(2, 0); 
         printf("Jogador: S | Jogadas restantes: %d  \n  (W, S, A, D) Para se mover (Enter para sair)", player.score);
 
-        // Captura a entrada do jogador
         char key = readch();
 
         if (key == '\n') break;
 
-        // Move o jogador com base na entrada
         move_player(maze, &player, key);
 
         player.score -= 1;
@@ -43,7 +38,6 @@ int main() {
         }
     }
 
-    // Libera os recursos e restaura o terminal
     free_maze(maze);
     keyboardDestroy();
     screenShowCursor();
