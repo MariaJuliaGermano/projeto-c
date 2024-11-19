@@ -13,7 +13,7 @@
 
 ## **Descrição do Jogo**
 
-Este é um jogo de labirinto desenvolvido em C. O jogador deve movimentar o personagem pelo labirinto utilizando o teclado, evitando paredes e obstáculos até alcançar a saída. O jogo é baseado em interação via terminal e aplica conceitos de programação modular e estrutura de dados.
+Bem-vindo ao renovado Labirinto SI! Aqui você embarcará na jornada do bravo "S" (o estudante de Sistemas de Informação) em sua missão de alcançar o misterioso e poderoso "I". Não há atalhos, não há bônus: é dedicação pura, muito esforço, e algumas lágrimas de café para chegar ao final.
 
 ---
 
