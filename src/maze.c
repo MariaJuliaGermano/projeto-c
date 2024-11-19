@@ -23,7 +23,7 @@ void free_maze(Maze *maze) {
 }
 
 void load_maze(Maze *maze) {
-    char example[13][38] = {
+    const char *example[13] = {
         "######################################",
         "#        #      #       #            #",
         "### ### ### ##### ### ### ####### ####",
@@ -35,16 +35,22 @@ void load_maze(Maze *maze) {
         "# # ### ####### ### # ##### ### #####",
         "# #         #   #   #   #       #   #",
         "# ##### ### ##### ##### ####### #### #",
-        "#     #   #         #     #         E#",
+        "#     #   #        E#     #         #",
         "######################################"
     };
 
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
             maze->grid[i][j] = example[i][j];
+            if (maze->grid[i][j] != '#' && maze->grid[i][j] != ' ' &&
+                maze->grid[i][j] != 'E') {
+                printf("Erro ao carregar o labirinto na posição (%d, %d): %c\n",
+                       i, j, maze->grid[i][j]);
+            }
         }
     }
 }
+
 
 void move_player(Maze *maze, Player *player, char direction) {
     int new_x = player->x;
