@@ -37,9 +37,7 @@ int main() {
         if (player.score <= 0) {
             screenClear();
             screenGotoxy(10, 5);
-            printf("+----------------------------------+\n");
-            printf("    |          GAME OVER               |\n");
-            printf("    +----------------------------------+\n");
+            printf("          GAME OVER              \n");
         
             readch();
         }
