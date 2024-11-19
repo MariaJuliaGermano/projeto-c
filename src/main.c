@@ -40,9 +40,7 @@ int main() {
             printf("+----------------------------------+\n");
             printf("|          GAME OVER               |\n");
             printf("+----------------------------------+\n");
-
-            screenGotoxy(10, 7);
-            printf("Pressione qualquer tecla para sair...");
+        
             readch();
         }
     }
