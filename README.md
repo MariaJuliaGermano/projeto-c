@@ -17,6 +17,13 @@ Bem-vindo ao renovado Labirinto SI! Aqui você embarcará na jornada do bravo "S
 
 ---
 
+## **Contexto do jogo**
+O "S", um jovem programador em formação, acordou em um labirinto repleto de barreiras. Essas barreiras, feitas de =, | e #, representam os desafios do curso: provas intermináveis, códigos que não compilam e aquele projeto de grupo que sempre dá dor de cabeça.
+
+Mas o "S" não se dá por vencido! Ele sabe que, ao final do labirinto, encontrará o "I". E o que significa o "I"? É Inovação, Impacto, Informação e... a tão sonhada Identidade Profissional como especialista em tecnologia.
+
+---
+
 ## **Mecânica do Jogo**
 
 1. **Objetivo**:
