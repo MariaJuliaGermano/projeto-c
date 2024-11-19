@@ -25,7 +25,7 @@ void free_maze(Maze *maze) {
 void load_maze(Maze *maze) {
     char example[13][38] = {
         "######################################",
-        "#@       #      #       #            #",
+        "#        #      #       #            #",
         "### ### ### ##### ### ### ####### ####",
         "#   #   #   #       #     #         #",
         "# ##### ##### ####### ##### ######## #",
@@ -60,19 +60,18 @@ void move_player(Maze *maze, Player *player, char direction) {
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
         if (maze->grid[new_x][new_y] == 'E') {
             screenClear();
-            screenGotoxy(10, 5); // Ajuste para centralizar
+            screenGotoxy(10, 5); // Centraliza a mensagem
             printf("+----------------------------------+\n");
             printf("|          PARABÉNS!!!             |\n");
             printf("|  SUA PONTUAÇÃO FINAL: %2d JOGADAS |\n", player->score);
             printf("+----------------------------------+\n");
-            screenShowCursor(); // Reexibe o cursor
-            exit(0); // Sai do jogo imediatamente
+            screenShowCursor();
+            exit(0);
         }
 
-
         if (maze->grid[new_x][new_y] == ' ') {
-            // Apaga o jogador da posição antiga
-            screenGotoxy(player->y + 2, player->x);
+            // Apaga a posição antiga do jogador
+            screenGotoxy(player->y + 1, player->x + 2);
             putchar(' ');
 
             // Atualiza as coordenadas do jogador
@@ -80,7 +79,7 @@ void move_player(Maze *maze, Player *player, char direction) {
             player->y = new_y;
 
             // Desenha o jogador na nova posição
-            screenGotoxy(player->y + 2, player->x);
+            screenGotoxy(player->y + 1, player->x + 2);
             putchar('@');
         }
     }
