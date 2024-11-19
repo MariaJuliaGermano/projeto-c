@@ -38,8 +38,8 @@ int main() {
             screenClear();
             screenGotoxy(10, 5);
             printf("+----------------------------------+\n");
-            printf("|          GAME OVER               |\n");
-            printf("+----------------------------------+\n");
+            printf("    |          GAME OVER               |\n");
+            printf("    +----------------------------------+\n");
         
             readch();
         }
