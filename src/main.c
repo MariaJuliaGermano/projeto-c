@@ -22,10 +22,7 @@ int main() {
     while (player.score > 0) {
         // Exibe informações no topo da tela
         screenGotoxy(2, 0); // Mais deslocado
-        printf("Jogador: @ | Jogadas restantes: %d\n", player.score);
-
-        screenGotoxy(2, 1);
-        printf("Use W, A, S, D para mover. Pressione Enter para sair.\n");
+        printf("Jogador: @ | Jogadas restantes: %d\n Pressione Enter para sair", player.score);
 
         // Captura a entrada do jogador
         char key = readch();
