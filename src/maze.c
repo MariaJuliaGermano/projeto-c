@@ -1,4 +1,5 @@
 #include "maze.h"
+#include "screen.h"
 #include <stdlib.h>
 #include <stdio.h>
 
