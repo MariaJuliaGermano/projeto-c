@@ -35,7 +35,7 @@ void load_maze(Maze *maze) {
         "| | ### ####### |## | ##### ### ####|",
         "| |         |   |   |   |       |   |",
         "| ##### ### ##### ##### ####### ####|",
-        "|     |   |         |     |        E|",
+        "|     |   |         |     |        i|",
         "====================================="
     };
 
@@ -72,8 +72,8 @@ void move_player(Maze *maze, Player *player, char direction) {
 
             // Desenha o jogador na nova posição
             screenGotoxy(player->y + 2, player->x + 3);
-            putchar('@');
-        } else if (target == 'E') { // Objetivo alcançado
+            putchar('S');
+        } else if (target == 'i') { // Objetivo alcançado
             screenClear();
             printf("+----------------------------------------+\n");
             printf("|    PARABÉNS!!!  Sua pontuação foi: %d  |\n", player->score);
