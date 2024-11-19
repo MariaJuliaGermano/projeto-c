@@ -57,35 +57,28 @@ void move_player(Maze *maze, Player *player, char direction) {
     else if (direction == 'a') new_y--; // Move para a esquerda
     else if (direction == 'd') new_y++; // Move para a direita
 
-    // Verifica se o movimento é válido
+    // Valida se a nova posição está dentro do labirinto
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
         char target = maze->grid[new_x][new_y];
 
-        if (target == 'E') { // Objetivo alcançado
-            screenClear();
-            screenGotoxy(10, 5);
-            printf("+----------------------------------+\n");
-            printf("|          PARABÉNS!!!             |\n");
-            printf("|  SUA PONTUAÇÃO FINAL: %2d JOGADAS |\n", player->score);
-            printf("+----------------------------------+\n");
-            screenShowCursor();
-            exit(0);
-        } else if (target == ' ') { // Espaço livre
+        if (target == ' ') { // Espaço vazio, movimento permitido
             // Apaga a posição antiga do jogador
-            screenGotoxy(player->y + 1, player->x + 2);
+            screenGotoxy(player->y + 2, player->x + 3); // +1 para alinhar ao terminal
             putchar(' ');
 
-            // Atualiza as coordenadas do jogador
+            // Atualiza a posição do jogador
             player->x = new_x;
             player->y = new_y;
 
             // Desenha o jogador na nova posição
-            screenGotoxy(player->y + 1, player->x + 2);
+            screenGotoxy(player->y + 2, player->x + 3);
             putchar('@');
-        } else {
-            // Movimentos inválidos não alteram o estado
-            screenGotoxy(SCRENDX - 20, SCRENDY);
-            printf("Movimento bloqueado!");
+        } else if (target == 'E') { // Objetivo alcançado
+            screenClear();
+            printf("+----------------------------------+\n");
+            printf("|          PARABÉNS!!!             |\n");
+            printf("+----------------------------------+\n");
+            exit(0);
         }
     }
 }
