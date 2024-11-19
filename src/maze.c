@@ -53,14 +53,13 @@ void move_player(Maze *maze, Player *player, char direction) {
     int new_y = player->y;
 
     // Calcula a nova posição com base na entrada do usuário
-    if (direction == 'w') new_x--;
-    else if (direction == 's') new_x++;
-    else if (direction == 'a') new_y--;
-    else if (direction == 'd') new_y++;
+    if (direction == 'w') new_x--; // Move para cima
+    else if (direction == 's') new_x++; // Move para baixo
+    else if (direction == 'a') new_y--; // Move para a esquerda
+    else if (direction == 'd') new_y++; // Move para a direita
 
-    // Verifica se o movimento é válido (não ultrapassa os limites)
+    // Verifica se o movimento é válido (não ultrapassa os limites e não bate na parede)
     if (new_x >= 0 && new_x < maze->rows && new_y >= 0 && new_y < maze->cols) {
-        // Se o jogador atingir a saída, o jogo termina
         if (maze->grid[new_x][new_y] == 'E') {
             screenClear();
             printf("+----------------------------------+\n");
@@ -70,13 +69,12 @@ void move_player(Maze *maze, Player *player, char direction) {
             exit(0); // Sai do jogo imediatamente
         }
 
-        // Atualiza a posição do jogador se for espaço vazio
         if (maze->grid[new_x][new_y] == ' ') {
-            // Apaga o jogador da posição anterior
+            // Apaga a posição antiga do jogador
             screenGotoxy(player->y, player->x);
             putchar(' ');
 
-            // Atualiza as coordenadas do jogador
+            // Atualiza a posição do jogador
             player->x = new_x;
             player->y = new_y;
 
