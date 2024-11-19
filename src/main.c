@@ -8,7 +8,7 @@ int main() {
     keyboardInit();      // Inicializa o teclado
 
     Maze *maze = create_maze(13, 38); // Ajuste do tamanho
-    Player player = {1, 1, 100};      // Inicializa o jogador
+    Player player = {1, 1, 99};      // Inicializa o jogador
     load_maze(maze);                  // Carrega o layout do labirinto
 
     // Desenha o labirinto
@@ -22,7 +22,6 @@ int main() {
     while (player.score > 0) {
         // Exibe informações no topo da tela
         screenGotoxy(2, 0); // Mais deslocado
-        printf("                                                    ");
         printf("Jogador: @ | Jogadas restantes: %d\n  (W, S, A, D) Para se mover (Enter para sair)", player.score);
 
         // Captura a entrada do jogador
