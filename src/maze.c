@@ -70,16 +70,16 @@ void move_player(Maze *maze, Player *player, char direction) {
         }
 
         if (maze->grid[new_x][new_y] == ' ') {
-            // Apaga a posição antiga do jogador
-            screenGotoxy(player->y, player->x);
+            // Apaga o jogador da posição antiga
+            screenGotoxy(player->y + 2, player->x);
             putchar(' ');
 
-            // Atualiza a posição do jogador
+            // Atualiza as coordenadas do jogador
             player->x = new_x;
             player->y = new_y;
 
             // Desenha o jogador na nova posição
-            screenGotoxy(player->y, player->x);
+            screenGotoxy(player->y + 2, player->x);
             putchar('@');
         }
     }
