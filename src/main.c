@@ -14,7 +14,7 @@ int main() {
     // Desenha o labirinto
     for (int i = 0; i < maze->rows; i++) {
         for (int j = 0; j < maze->cols; j++) {
-            screenGotoxy(j + 2, i + 3); // Ajusta para caber dentro das bordas
+            screenGotoxy(j + 3, i + 4); // Ajusta para caber dentro das bordas
             putchar(maze->grid[i][j]);
         }
     }
