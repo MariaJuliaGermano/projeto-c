@@ -3,6 +3,51 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+Maze *create_maze(int rows, int cols) {
+    Maze *maze = malloc(sizeof(Maze));
+    maze->rows = rows;
+    maze->cols = cols;
+    maze->grid = malloc(rows * sizeof(char *));
+    for (int i = 0; i < rows; i++) {
+        maze->grid[i] = malloc(cols * sizeof(char));
+    }
+    return maze;
+}
+
+void free_maze(Maze *maze) {
+    for (int i = 0; i < maze->rows; i++) {
+        free(maze->grid[i]);
+    }
+    free(maze->grid);
+    free(maze);
+}
+
+void load_maze(Maze *maze) {
+    char example[15][40] = {
+        "########################################",
+        "#@       #      #       #              #",
+        "### ### ### ##### ### ### ####### ######",
+        "#   #   #   #       #     #           #",
+        "# ##### ##### ####### ##### ######### ##",
+        "#       #       #         #       #    #",
+        "### ### ##### ##### ####### ### ##### ##",
+        "#   # #       #     #     #   #       #",
+        "# # ### ####### ### # ##### ### ####### ",
+        "# #         #   #   #   #       #      #",
+        "# ##### ### ##### ##### ####### ###### #",
+        "#     #   #         #     #           #",
+        "##### ### ######### ##### ### #########",
+        "#       #       #       #   #         E#",
+        "########################################"
+    };
+
+    for (int i = 0; i < maze->rows; i++) {
+        for (int j = 0; j < maze->cols; j++) {
+            maze->grid[i][j] = example[i][j];
+        }
+    }
+}
+
 void move_player(Maze *maze, Player *player, char direction) {
     int new_x = player->x;
     int new_y = player->y;
